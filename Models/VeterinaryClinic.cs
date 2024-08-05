@@ -21,10 +21,7 @@ public class VeterinaryClinic
         Cats = new List<Cat>();
     }
     // método para guardar un nuevo perro
-    public void SaveDog(Dog newDog)
-    {
-        Dogs.Add(new Dog());
-    }
+    public void SaveDog(Dog newDog) => Dogs.Add(new Dog());
     // método para guardar un nuevo gato
     public void SaveCat(Cat newCat)
     {
