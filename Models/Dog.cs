@@ -10,11 +10,11 @@ public class Dog
     // propiedades de la clase perro
     public object? Id { get; internal set; }
     public object? Name { get; internal set; }
-    public bool BreedingStatus { get; internal set; }
+    public bool BreedingStatus { get; internal set; } // estado reproductivo
     public string? Temperament { get; internal set; }
     public string? MicrochipNumber { get; internal set; }
-    public string? BarkVolume { get; internal set; }
-    public string? CoatType { get; internal set; }
+    public string? BarkVolume { get; internal set; } // volumen de corteza?
+    public string? CoatType { get; internal set; } // tipo de pelo
     // constructor de la clase perro
     public Dog(object? id, object? name, bool breedingStatus, string? temperament, string? microchipNumber, string? barkVolume, string? coatType)
     {
@@ -25,10 +25,6 @@ public class Dog
         MicrochipNumber = microchipNumber;
         BarkVolume = barkVolume;
         CoatType = coatType;
-    }
-
-    public Dog()
-    {
     }
 
     // método castrar animal
