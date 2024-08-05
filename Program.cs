@@ -1,172 +1,164 @@
 ﻿using PruebaC_sharp_SimonArias.Models;
 
-void ShowMenu()
+// interfaz visual
+class Program
 {
-    Console.WriteLine(@$"1. Save Dog
-    2. Save Cat
-    3. Update Dog
-    4. Update Cat
-    5. Delete Dog
-    6. Delete Cat
-    7. Show All Patients
-    8. Show Animals
-    9. Show Patient
-    0. Exit");
-
-    int option;
-    do
+    static void Main(string[] args)
     {
-        Console.Write("Choose an option: ");
-        option = Convert.ToInt32(Console.ReadLine());
-        switch (option)
+        VeterinaryClinic clinic = new VeterinaryClinic("Riwi pet", "Cra 4 Medellin");
+        while (true)
         {
-            case 1:
-                SaveDog();
-                break;
-            case 2:
-                SaveCat();
-                break;
-            case 3:
-                UpdateDog();
-                break;
-            case 4:
-                UpdateCat();
-                break;
-            case 5:
-                DeleteDog();
-                break;
-            case 6:
-                DeleteCat();
-                break;
-            case 7:
-                ShowAllPatients();
-                break;
-            case 8:
-                ShowAnimals();
-                break;
-            case 9:
-                ShowPatient();
-                break;
-            case 0:
-                Environment.Exit(0);
-                break;
-            default:
-                Console.WriteLine("Invalid option");
-                break;
+            // menú de opciones
+            ManagerApp.ShowHeader();
+            Console.WriteLine("1. Add Dog");
+            Console.WriteLine("2. Add Cat");
+            Console.WriteLine("3. Show All Patients");
+            Console.WriteLine("4. Update Animal");
+            Console.WriteLine("5. Delete Animal");
+            Console.WriteLine("6. Show Animals");
+            Console.WriteLine("7. show animal by name");
+            Console.WriteLine("8. Validate breeding");
+            Console.WriteLine("9. Exit");
+            ManagerApp.ShowSeparator();
+            Console.Write("Choose an option: ");
+            string option = Console.ReadLine();
+
+            switch (option)
+            {
+                case "1":
+                    Dog newDog = CreateDog();
+                    clinic.SaveDog(newDog);
+                    break;
+                case "2":
+                    Cat newCat = CreateCat();
+                    clinic.SaveCat(newCat);
+                    break;
+                case "3":
+                    clinic.ShowAllPatients();
+                    break;
+                case "4":
+                    Console.Write("Enter patient Name to update: ");
+                    string updateId = (Console.ReadLine());
+                    Console.Write("Is it a dog or a cat? (dog/cat): ");
+                    string animalType = Console.ReadLine().ToLower();
+                    if (animalType == "dog")
+                    {
+                        Dog updatedDog = CreateDog(); // Asume que ya tienes este método
+                        clinic.UpdateDog(updateId, updatedDog);
+                    }
+                    else if (animalType == "cat")
+                    {
+                        Cat updatedCat = CreateCat(); // Asume que ya tienes este método
+                        clinic.UpdateCat(updateId, updatedCat);
+                    }
+                    break;
+                case "5":
+                    Console.Write("Enter patient Name to delete: ");
+                    string deleteId = (Console.ReadLine());
+                    Console.Write("Is it a dog or a cat? (dog/cat): ");
+                    string deleteType = Console.ReadLine().ToLower();
+                    if (deleteType == "dog")
+                    {
+                        clinic.DeleteDog(deleteId);
+                    }
+                    else if (deleteType == "cat")
+                    {
+                        clinic.DeleteCat(deleteId);
+                    }
+                    break;
+                case "6":
+                    Console.Write("Show dogs or cats? (dog/cat): ");
+                    string showType = Console.ReadLine();
+                    clinic.ShowAnimals(showType);
+                    break;
+                case "7":
+                    Console.Write("Enter patient Name to show: ");
+                    string showId = (Console.ReadLine());
+                    clinic.ShowPatient(showId);
+                    break;
+                case "8":
+                    Console.Write("Enter patient Name to validate if available for breeding: ");
+                    string validateId = (Console.ReadLine());
+                    clinic.ToBreeding(validateId);
+                    break;
+                case "9":
+                    Environment.Exit(0);
+                    break;
+                default:
+                    Console.WriteLine("Invalid option. Please try again.");
+                    break;
+            }
+            ManagerApp.ShowFooter();
+            Console.WriteLine("Press any key to continue...");
+            Console.ReadKey();
+            Console.Clear();
         }
-    } while (true);
-}
-
-Dog SaveDog()
-{
-    Console.WriteLine("Enter dogś Id:");
-    int id = Convert.ToInt32(Console.ReadLine());
-    Console.Write("Enter dog's name: ");
-    string name = Console.ReadLine();
-    Console.Write("Enter dog's birthdate (dd/MM/yyyy): ");
-    string birthdateString = Console.ReadLine();
-    DateOnly birthdate = DateOnly.Parse(birthdateString);
-    Console.Write("Enter dog's breed: ");
-    string breed = Console.ReadLine();
-    Console.Write("Enter dog's color: ");
-    string color = Console.ReadLine();
-    Console.Write("Enter dog's weight (in kg): ");
-    double weightInKg = Convert.ToDouble(Console.ReadLine());
-    Console.Write("Enter dog's breeding status (true/false): ");
-    bool breedingStatus = Convert.ToBoolean(Console.ReadLine());
-    Console.Write("Enter dog's temperament: ");
-    string temperament = Console.ReadLine();
-    Console.WriteLine("Enter dog's microchip number:");
-    string microchipNumber = Console.ReadLine();
-    Console.Write("Enter dog's bark volume: ");
-    string barkVolume = Console.ReadLine();
-    Console.Write("Enter dog's coat type: ");
-    string? coatType = Console.ReadLine();
-    return new Dog(id, name, birthdate, breed, color, weightInKg, breedingStatus, temperament, microchipNumber, barkVolume, coatType);
-}
-Cat SaveCat()
-{
-    Console.WriteLine("Enter catś Id:");
-    int id = Convert.ToInt32(Console.ReadLine());
-    Console.Write("Enter cat's name: ");
-    string name = Console.ReadLine();
-    Console.Write("Enter cat's birthdate (dd/MM/yyyy): ");
-    string birthdateString = Console.ReadLine();
-    DateOnly birthdate = DateOnly.Parse(birthdateString);
-    Console.Write("Enter cat's breed: ");
-    string breed = Console.ReadLine();
-    Console.Write("Enter cat's color: ");
-    string color = Console.ReadLine();
-    Console.Write("Enter cat's weight (in kg): ");
-    double weightInKg = Convert.ToDouble(Console.ReadLine());
-    Console.Write("Enter cat's breeding status (true/false): ");
-    bool breedingStatus = Convert.ToBoolean(Console.ReadLine());
-    Console.Write("Enter cat's fur length: ");
-    string? furLength = Console.ReadLine();
-    return new Cat(id, name, birthdate, breed, color, weightInKg, breedingStatus, furLength);
-}
-void UpdateDog()
-{
-    Console.WriteLine("Enter dog's Id to update:");
-    int id = Convert.ToInt32(Console.ReadLine());
-    Dog? dogToUpdate = Dog.Dogs.Find(dog => dog.GetId() == id);
-    if (dogToUpdate!= null)
+    }
+    static Dog CreateDog()
     {
-        Console.Write("Enter dog's new name: ");
-        dogToUpdate.SetName(Console.ReadLine());
-        Console.Write("Enter dog's new birthdate (dd/MM/yyyy): ");
-        string newBirthdateString = Console.ReadLine();
-        dogToUpdate.SetBirthdate(DateOnly.Parse(newBirthdateString));
-        Console.Write("Enter dog's new breed: ");
-        dogToUpdate.SetBreed(Console.ReadLine());
-        Console.Write("Enter dog's new color: ");
-        dogToUpdate.SetColor(Console.ReadLine());
-        Console.Write("Enter dog's new weight (in kg): ");
-        dogToUpdate.SetWeightInKg(Convert
+        Console.WriteLine("Creating a new dog:");
+        Console.Write("Enter dog's name: ");
+        string name = Console.ReadLine();
+        Console.Write("Enter dog's birthdate (yyyy-MM-dd): ");
+        DateTime birthdate = DateTime.Parse(Console.ReadLine());
+        Console.Write("Enter dog's breed: ");
+        string breed = Console.ReadLine();
+        Console.Write("Enter dog's color: ");
+        string color = Console.ReadLine();
+        Console.Write("Enter dog's weight in kg: ");
+        double weightInKg = double.Parse(Console.ReadLine());
+        Console.Write("Is the dog available for breeding? (true/false): ");
+        bool breedingStatus = bool.Parse(Console.ReadLine());
+        Console.Write("Enter dog's temperament (Timid/Normal/Aggressive): ");
+        string temperament = Console.ReadLine();
+        Console.Write("Enter dog's microchip number: ");
+        string microchipNumber = Console.ReadLine();
+        Console.Write("Enter dog's bark volume (low/normal/high): ");
+        string barkVolume = Console.ReadLine();
+        Console.Write("Enter dog's coat type (Short/Medium/Long): ");
+        string coatType = Console.ReadLine();
+
+        return new Dog(
+            id: 0,
+            name: name,
+            birthdate: birthdate,
+            breed: breed,
+            color: color,
+            weightInKg: weightInKg,
+            breedingStatus: breedingStatus,
+            temperament: temperament,
+            microchipNumber: microchipNumber,
+            barkVolume: barkVolume,
+            coatType: coatType
+        );
+    }
+    static Cat CreateCat()
+    {
+        Console.WriteLine("Creating a new cat:");
+        Console.Write("Enter cat's name: ");
+        string name = Console.ReadLine();
+        Console.Write("Enter cat's birthdate (yyyy-MM-dd): ");
+        DateTime birthdate = DateTime.Parse(Console.ReadLine());
+        Console.Write("Enter cat's breed: ");
+        string breed = Console.ReadLine();
+        Console.Write("Enter cat's color: ");
+        string color = Console.ReadLine();
+        Console.Write("Enter cat's weight in kg: ");
+        double weightInKg = double.Parse(Console.ReadLine());
+        Console.Write("Is the cat available for breeding? (true/false): ");
+        bool breedingStatus = bool.Parse(Console.ReadLine());
+        Console.Write("Enter cat's fur length (None/Short/Medium/Long): ");
+        string furLength = Console.ReadLine();
+
+        return new Cat(
+            id: 0,
+            name: name,
+            birthdate: birthdate,
+            breed: breed,
+            color: color,
+            weightInKg: weightInKg,
+            breedingStatus: breedingStatus,
+            furLength: furLength
+        );
     }
 }
-void UpdateCat()
-{
-
-}
-void DeleteDog()
-{
-
-}
-void DeleteCat()
-{
-
-}
-void ShowAllPatients()
-{
-    Console.WriteLine("Dogs:");
-    foreach (var dog in Dog.Dogs)
-    {
-        Console.WriteLine($"ID: {dog.GetId}, Nombre: {dog.GetName}");
-    }
-    Console.WriteLine("Cats:");
-    foreach (var cat in Cat.Cats)
-    {
-        Console.WriteLine($"ID: {cat.GetId}, Nombre: {cat.GetName}");
-    }
-}
-void ShowAnimals()
-{
-    Console.WriteLine("Dogs:");
-    foreach (var dog in Dog.Dogs)
-    {
-        dog.ShowInformation();
-    }
-    Console.WriteLine("Cats:");
-    foreach (var cat in Cat.Cats)
-    {
-        cat.ShowInformation();
-    }
-}
-void ShowPatient()
-{
-
-}
-
-
-ShowMenu();

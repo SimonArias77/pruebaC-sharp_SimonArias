@@ -29,6 +29,13 @@ public class Dog : Animal
     // lista o coleccion de perros
     public static List<Dog> Dogs { get; } = new List<Dog>();
 
+    // método para mostrar información
+    public override void ShowInformation()
+    {
+        BasicReview();
+        Console.WriteLine($"Raza: {Breed}, Estado reproductivo: {BreedingStatus}, Temperamento: {Temperament}, Número microchip: {MicrochipNumber}, Volumen corteza: {BarkVolume}, Tipo de pelo: {CoatType}");
+    }
+
     // método castrar animal
     public void CastrateAnimal()
     {
