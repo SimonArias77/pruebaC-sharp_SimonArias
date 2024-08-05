@@ -15,7 +15,7 @@ public class Animal
     protected string? Breed { get; set; } // raza
     protected string? Color { get; set; }
     protected double WeightInKg { get; set; }
-    // se crea método para quitar encapsulamiento de id y de name
+    // se crean métodos para quitar encapsulamiento de id y de name
     public int GetId()
     {
         return Id;
@@ -24,8 +24,25 @@ public class Animal
     {
         return Name;
     }
+    // se crean metodos para quitar encapsulamiento de birthdate, breed, color, weightInKg
+    public DateOnly GetBirthdate()
+    {
+        return Birthdate;
+    }
+    public string? GetBreed()
+    {
+        return Breed;
+    }
+    public string? GetColor()
+    {
+        return Color;
+    }
+    public double GetWeightInKg()
+    {
+        return WeightInKg;
+    }
     // constructor de la clase Animal
-    public Animal(int id, string? name, DateOnly birthdate, string? breed, string? color, double weightInKg)
+    public Animal(int id, string name, DateOnly birthdate, string? breed, string? color, double weightInKg)
     {
         Id = id;
         Name = name;
@@ -33,6 +50,19 @@ public class Animal
         Breed = breed;
         Color = color;
         WeightInKg = weightInKg;
+    }
+
+    // lista o coleccion de animales
+    public static List<Animal> Animals { get; } = new List<Animal>();
+    // método para agregar animal a la lista
+    public static void AddAnimal(Animal animal)
+    {
+        Animals.Add(animal);
+    }
+    // método para eliminar animal de la lista
+    public static void DeleteAnimal(int id)
+    {
+        Animals.RemoveAt(id);
     }
     // método mostrar información
     public void ShowInformation()

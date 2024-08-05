@@ -26,6 +26,9 @@ public class Dog : Animal
         CoatType = coatType;
     }
 
+    // lista o coleccion de perros
+    public static List<Dog> Dogs { get; } = new List<Dog>();
+
     // método castrar animal
     public void CastrateAnimal()
     {
