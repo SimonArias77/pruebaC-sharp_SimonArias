@@ -15,6 +15,15 @@ public class Animal
     protected string? Breed { get; set; } // raza
     protected string? Color { get; set; }
     protected double WeightInKg { get; set; }
+    // se crea método para quitar encapsulamiento de id y de name
+    public int GetId()
+    {
+        return Id;
+    }
+    public string? GetName()
+    {
+        return Name;
+    }
     // constructor de la clase Animal
     public Animal(int id, string? name, DateOnly birthdate, string? breed, string? color, double weightInKg)
     {

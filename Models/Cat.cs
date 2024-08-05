@@ -5,25 +5,21 @@ using System.Threading.Tasks;
 
 namespace PruebaC_sharp_SimonArias.Models;
 
-public class Cat
+public class Cat: Animal
 {
     // propiedades de la clase gato
-    public object? Id { get; internal set; }
-    public object? Name { get; internal set; }
+  
     public bool BreedingStatus { get; internal set; } // estado reproductivo
     public string? FurLength { get; internal set; } // longitud pelaje
 
     // constructor de la clase gato
-    public Cat(object? id, object? name, bool breedingStatus, string? furLength)
+    public Cat(int id, string name, DateOnly birthdate, string breed, string color, double weightInKg, bool breedingStatus, string? furLength) : base( id,  name,  birthdate,  breed,  color,  weightInKg)
     {
-        Id = id;
-        Name = name;
+        
         BreedingStatus = breedingStatus;
         FurLength = furLength;
     }
-    public Cat()
-    {
-    }
+    
     // método para castrar animal
     public void CastrateAnimal()
     {

@@ -29,7 +29,8 @@ public class VeterinaryClinic
     // método para guardar un nuevo gato
     public void SaveCat(Cat newCat)
     {
-        Cats.Add(new Cat());
+        Cats.Add(newCat);
+        Console.WriteLine("Gato guardado");
     }
     // método para actualizar perro
     public void UpdateDog(Dog dog)
@@ -56,14 +57,15 @@ public class VeterinaryClinic
     // método para mostrar todos los pacientes
     public void ShowAllPatients()
     {
-        Console.WriteLine("Pacientes:");
+        Console.WriteLine("Perros:");
         foreach (var dog in Dogs)
         {
-            Console.WriteLine($"ID: {dog.Id}, Nombre: {dog.Name}");
+            Console.WriteLine($"ID: {dog.GetId}, Nombre: {dog.GetName}");
         }
+        Console.WriteLine("Gatos:");
         foreach (var cat in Cats)
         {
-            Console.WriteLine($"ID: {cat.Id}, Nombre: {cat.Name}");
+            Console.WriteLine($"ID: {cat.GetId}, Nombre: {cat.GetName}");
         }
     }
     // método para mostrar animales
@@ -74,7 +76,7 @@ public class VeterinaryClinic
             Console.WriteLine("Perros:");
             foreach (var dog in Dogs)
             {
-                Console.WriteLine($"ID: {dog.Id}, Nombre: {dog.Name}");
+                Console.WriteLine($"ID: {dog.GetId}, Nombre: {dog.GetName}");
             }
         }
         else if (type == "cat")
@@ -82,7 +84,7 @@ public class VeterinaryClinic
             Console.WriteLine("Gatos:");
             foreach (var cat in Cats)
             {
-                Console.WriteLine($"ID: {cat.Id}, Nombre: {cat.Name}");
+                Console.WriteLine($"ID: {cat.GetId}, Nombre: {cat.GetName}");
             }
         }
         else
@@ -93,27 +95,19 @@ public class VeterinaryClinic
     // método para mostrar un paciente con id
     public void ShowPatient(int idPatient)
     {
-        bool foundDog = false;
-        bool foundCat = false;
-        foreach (var dog in Dogs)
+        Dog? dogFound = Dogs.Find(dog => dog.GetId() == idPatient);
+        Cat? catFound = Cats.Find(cat => cat.GetId() == idPatient);
+        if (dogFound != null)
         {
-            if ((int)dog.Id == idPatient)
-            {
-                Console.WriteLine($"ID: {dog.Id}, Nombre: {dog.Name}");
-                foundDog = true;
-            }
+            dogFound.ShowInformation();
         }
-        foreach (var cat in Cats)
+        else if (catFound != null)
         {
-            if ((int)cat.Id == idPatient)
-            {
-                Console.WriteLine($"ID: {cat.Id}, Nombre: {cat.Name}");
-                foundCat = true;
-            }
+            catFound.ShowInformation();
         }
-        if (!foundDog && !foundCat)
+        else
         {
-            Console.WriteLine("Paciente no encontrado");
+            Console.WriteLine("No se encontró el paciente");
         }
     }
 }
