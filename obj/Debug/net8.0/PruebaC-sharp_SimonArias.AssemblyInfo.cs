@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PruebaC-sharp_SimonArias")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5ab4d4d2c5f10fa40e8d1a92c0d5e69cc23c66e6")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+204aca4c59ed95d3166cd05881e4ae95c826a586")]
 [assembly: System.Reflection.AssemblyProductAttribute("PruebaC-sharp_SimonArias")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PruebaC-sharp_SimonArias")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

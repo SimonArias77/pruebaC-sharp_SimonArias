@@ -24,6 +24,7 @@ class Program
             string option = Console.ReadLine();
 
             switch (option)
+            // se crea ciclo switch para opciones de funcionalidad
             {
                 case "1":
                     Dog newDog = CreateDog();
@@ -94,6 +95,7 @@ class Program
             Console.Clear();
         }
     }
+    // se crea un nuevo perro
     static Dog CreateDog()
     {
         Console.WriteLine("Creating a new dog:");
@@ -132,6 +134,8 @@ class Program
             coatType: coatType
         );
     }
+
+    // se crea un nuevo gato
     static Cat CreateCat()
     {
         Console.WriteLine("Creating a new cat:");
