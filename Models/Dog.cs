@@ -7,43 +7,58 @@ namespace PruebaC_sharp_SimonArias.Models;
 
 public class Dog : Animal
 {
-    // propiedades de la clase perro
+    // propiedades de la clase Perro
+    public bool BreedingStatus { get; set; }
+    public string Temperament { get; set; }
+    public string MicrochipNumber { get; set; }
+    public string BarkVolume { get; set; }
+    public string CoatType { get; set; }
 
-    public bool BreedingStatus { get; internal set; } // estado reproductivo
-    public string? Temperament { get; internal set; }
-    public string? MicrochipNumber { get; internal set; }
-    public string? BarkVolume { get; internal set; } // volumen de corteza?
-    public string? CoatType { get; internal set; } // tipo de pelo
-
-    // constructor de la clase perro
-    public Dog(int id, string name, DateOnly birthdate, string breed, string color, double weightInKg, bool breedingStatus, string temperament, string microchipNumber, string barkVolume, string coatType) : base(id, name, birthdate, breed, color, weightInKg)
+    // constructor de la clase Perro
+    public Dog(int id, string name, DateTime birthdate, string breed, string color, double weightInKg,
+               bool breedingStatus, string temperament, string microchipNumber, string barkVolume, string coatType)
+        : base(id, name, birthdate, breed, color, weightInKg)
     {
-
         BreedingStatus = breedingStatus;
         Temperament = temperament;
         MicrochipNumber = microchipNumber;
         BarkVolume = barkVolume;
         CoatType = coatType;
     }
-
-    // lista o coleccion de perros
-    public static List<Dog> Dogs { get; } = new List<Dog>();
-
-    // método para mostrar información
+    //método para mostrar información de la clase Perro
     public override void ShowInformation()
     {
-        BasicReview();
-        Console.WriteLine($"Raza: {Breed}, Estado reproductivo: {BreedingStatus}, Temperamento: {Temperament}, Número microchip: {MicrochipNumber}, Volumen corteza: {BarkVolume}, Tipo de pelo: {CoatType}");
+        Console.WriteLine($"Dog: {Name}, Breed: {Breed}, Age: {CalculateAgeInMonths()} months, Temperament: {Temperament}, MicrochipNumber: {MicrochipNumber}, barkVolume: {BarkVolume}");
     }
 
-    // método castrar animal
-    public void CastrateAnimal()
+    // método para mostrar estado de reproducción de la clase Perro
+    public void Breeding()
     {
-        Console.WriteLine("Animal castrado");
+        if (BreedingStatus)
+        {
+            Console.WriteLine($"{Name}'s breeding status: available for breeding");
+        }
+        else
+        {
+            Console.WriteLine($"{Name}'s breeding status: not available for breeding");
+        }
     }
-    // método peluquería
+    // método para mostrar revisión básica de la clase Perro
+    public override void BasicReview()
+    {
+        Console.WriteLine($"Dog {Name}");
+    }
+
+    // método para peluquería de la clase Perro
     public void Hairdress()
     {
-        Console.WriteLine("Peluquería realizada");
+        if (CoatType != "Short")
+        {
+            Console.WriteLine($"Giving {Name} a haircut");
+        }
+        else
+        {
+            Console.WriteLine($"{Name}'s coat is too short for a haircut");
+        }
     }
 }

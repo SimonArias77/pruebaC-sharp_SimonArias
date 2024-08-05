@@ -16,7 +16,7 @@ public abstract class Animal
     public string Color { get; set; }
     public double WeightInKg { get; set; }
 
-//constructor de la clase Animal
+    //constructor de la clase Animal
     public Animal(int id, string name, DateTime birthdate, string breed, string color, double weightInKg)
     {
         Id = id;
@@ -26,7 +26,7 @@ public abstract class Animal
         Color = color;
         WeightInKg = weightInKg;
     }
-// métodos de la clase Animal
+    // métodos de la clase Animal
     public abstract void ShowInformation();
     public abstract void BasicReview();
     public int CalculateAgeInMonths()

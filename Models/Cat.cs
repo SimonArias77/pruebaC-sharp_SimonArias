@@ -11,27 +11,27 @@ public class Cat : Animal
     public bool BreedingStatus { get; set; }
     public string FurLength { get; set; }
 
-// constructor de la clase Gato
-    public Cat(int id, string name, DateTime birthdate, string breed, string color, double weightInKg, 
-               bool breedingStatus, string furLength) 
+    // constructor de la clase Gato
+    public Cat(int id, string name, DateTime birthdate, string breed, string color, double weightInKg,
+               bool breedingStatus, string furLength)
         : base(id, name, birthdate, breed, color, weightInKg)
     {
         BreedingStatus = breedingStatus;
         FurLength = furLength;
     }
-// método para mostrar informacion de la clase Gato
+    // método para mostrar informacion de la clase Gato
     public override void ShowInformation()
     {
         Console.WriteLine($"Cat: {Name}, Breed: {Breed}, Age: {CalculateAgeInMonths()} months, ");
     }
 
-// método para mostrar revisión básica de la clase Gato
+    // método para mostrar revisión básica de la clase Gato
     public override void BasicReview()
     {
         Console.WriteLine($"Cat {Name}");
     }
 
-// método para Peluquería
+    // método para Peluquería
     public void Hairdress()
     {
         if (FurLength != "None")
@@ -45,15 +45,16 @@ public class Cat : Animal
     }
 
     // método para el estado de la reproducción
-      public void Breeding()
+    public void Breeding()
     {
         if (BreedingStatus)
         {
             Console.WriteLine($"{Name}'s breeding status: available for breeding");
         }
-        else{
+        else
+        {
             Console.WriteLine($"{Name}'s breeding status: not available for breeding");
         }
-  
+
     }
 }
