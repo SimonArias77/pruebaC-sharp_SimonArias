@@ -7,32 +7,18 @@ namespace PruebaC_sharp_SimonArias.Models;
 
 public class ManagerApp
 {
-    //método crear nuevo perro
-    public Dog CreateDog(int id, string name, DateOnly birthdate, string breed, string color, double weightInKg, bool breedingStatus, string temperament, string microchipNumber, string barkVolume, string coatType)
+    public static void ShowHeader()
     {
-        return new Dog(id, name, birthdate, breed, color, weightInKg, breedingStatus, temperament, microchipNumber, barkVolume, coatType);
+        Console.WriteLine("       Veterinary Clinic App      ");
     }
 
-    //método crear nuevo gato
-    public Cat CreateCat(int id, string name, DateOnly birthdate, string breed, string color, double weightInKg, bool breedingStatus, string? furLength)
+    public static void ShowFooter()
     {
-        return new Cat(id, name, birthdate, breed, color, weightInKg, breedingStatus, furLength);
+        Console.WriteLine("          End of Report           ");
     }
 
-    // método mostrar encabezado de la página
-    public void ShowHeader()
+    public static void ShowSeparator()
     {
-        Console.WriteLine("Welcome to the Veterinary Clinic");
+        Console.WriteLine("----------------------------------");
     }
-    // método mostrar pie de página
-    public void ShowFooter()
-    {
-        Console.WriteLine("Thank you for using our services");
-    }
-    // método mostrar separador entre encabezado y contenido
-    public void ShowSeparator()
-    {
-        Console.WriteLine("--------------------");
-    }
-
 }

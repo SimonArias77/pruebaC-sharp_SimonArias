@@ -7,107 +7,169 @@ namespace PruebaC_sharp_SimonArias.Models;
 
 public class VeterinaryClinic
 {
-    // propiedades de la clase VeterinaryClinic
+    // propiedades comunes de la clase VeterinaryClinic
     public string Name { get; set; }
     public string Address { get; set; }
     public List<Dog> Dogs { get; set; }
     public List<Cat> Cats { get; set; }
+
     // constructor de la clase VeterinaryClinic
-    public VeterinaryClinic(string name, string address, List<Dog> dogs, List<Cat> cats)
+    public VeterinaryClinic(string name, string address)
     {
         Name = name;
         Address = address;
         Dogs = new List<Dog>();
         Cats = new List<Cat>();
     }
-    // método para guardar un nuevo perro
+
+    // método para agregar un nuevo perro
     public void SaveDog(Dog newDog)
     {
         Dogs.Add(newDog);
-        Console.WriteLine("Perro guardado");
     }
-    // método para guardar un nuevo gato
+
+    // método para agregar un nuevo gato
     public void SaveCat(Cat newCat)
     {
         Cats.Add(newCat);
-        Console.WriteLine("Gato guardado");
     }
-    // método para actualizar perro
-    public void UpdateDog(Dog dog)
-    {
-        Console.WriteLine("Perro actualizado");
-    }
-    // método para actualizar gato
-    public void UpdateCat(Cat cat)
-    {
-        Console.WriteLine("Gato actualizado");
-    }
-    // método para eliminar perro
-    public void DeleteDog(int id)
-    {
-        Dogs.RemoveAt(id);
-        Console.WriteLine("Perro eliminado");
-    }
-    // método para eliminar gato
-    public void DeleteCat(int id)
-    {
-        Cats.RemoveAt(id);
-        Console.WriteLine("Gato eliminado");
-    }
-    // método para mostrar todos los pacientes
+
+    // método para mostrar pacientes
     public void ShowAllPatients()
     {
-        Console.WriteLine("Perros:");
+        Console.WriteLine("All Patients:");
         foreach (var dog in Dogs)
         {
-            Console.WriteLine($"ID: {dog.GetId}, Nombre: {dog.GetName}");
+            dog.BasicReview();
         }
-        Console.WriteLine("Gatos:");
         foreach (var cat in Cats)
         {
-            Console.WriteLine($"ID: {cat.GetId}, Nombre: {cat.GetName}");
+            cat.BasicReview();
         }
     }
+
+    // método para actualizar información de un perro
+    public void UpdateDog(string name, Dog updatedDog)
+    {
+        var dogToUpdate = Dogs.FirstOrDefault(d => d.Name == name);
+        if (dogToUpdate != null)
+        {
+            int index = Dogs.IndexOf(dogToUpdate);
+            Dogs[index] = updatedDog;
+            Console.WriteLine("Dog updated successfully.");
+        }
+        else
+        {
+            Console.WriteLine("Dog not found.");
+        }
+    }
+
+    // método para actualizar información de un gato
+    public void UpdateCat(string name, Cat updatedCat)
+    {
+        var catToUpdate = Cats.FirstOrDefault(c => c.Name == name);
+        if (catToUpdate != null)
+        {
+            int index = Cats.IndexOf(catToUpdate);
+            Cats[index] = updatedCat;
+            Console.WriteLine("Cat updated successfully.");
+        }
+        else
+        {
+            Console.WriteLine("Cat not found.");
+        }
+    }
+
+    // método para eliminar un perro
+    public void DeleteDog(string name)
+    {
+        var dogToDelete = Dogs.FirstOrDefault(d => d.Name == name);
+        if (dogToDelete != null)
+        {
+            Dogs.Remove(dogToDelete);
+            Console.WriteLine("Dog deleted successfully.");
+        }
+        else
+        {
+            Console.WriteLine("Dog not found.");
+        }
+    }
+
+    // método para eliminar un gato
+    public void DeleteCat(string name)
+    {
+        var catToDelete = Cats.FirstOrDefault(c => c.Name == name);
+        if (catToDelete != null)
+        {
+            Cats.Remove(catToDelete);
+            Console.WriteLine("Cat deleted successfully.");
+        }
+        else
+        {
+            Console.WriteLine("Cat not found.");
+        }
+    }
+
     // método para mostrar animales
     public void ShowAnimals(string type)
     {
-        if (type == "dog")
+        if (type.ToLower() == "dog")
         {
-            Console.WriteLine("Perros:");
+            Console.WriteLine("Dogs:");
             foreach (var dog in Dogs)
             {
-                Console.WriteLine($"ID: {dog.GetId}, Nombre: {dog.GetName}");
+                dog.ShowInformation();
             }
         }
-        else if (type == "cat")
+        else if (type.ToLower() == "cat")
         {
-            Console.WriteLine("Gatos:");
+            Console.WriteLine("Cats:");
             foreach (var cat in Cats)
             {
-                Console.WriteLine($"ID: {cat.GetId}, Nombre: {cat.GetName}");
+                cat.ShowInformation();
             }
         }
         else
         {
-            Console.WriteLine("Tipo de animal no válido");
+            Console.WriteLine("Invalid animal type.");
         }
     }
-    // método para mostrar un paciente con id
-    public void ShowPatient(int idPatient)
+
+    // método para mostrar paciente específico
+    public void ShowPatient(string patient)
     {
-        Dog? dogFound = Dogs.Find(dog => dog.GetId() == idPatient);
-        Cat? catFound = Cats.Find(cat => cat.GetId() == idPatient);
-        if (dogFound != null)
+        var dog = Dogs.FirstOrDefault(d => d.Name == patient);
+        if (dog != null)
         {
-            dogFound.ShowInformation();
+            dog.ShowInformation();
+            return;
         }
-        else if (catFound != null)
+
+        var cat = Cats.FirstOrDefault(c => c.Name == patient);
+        if (cat != null)
         {
-            catFound.ShowInformation();
+            cat.ShowInformation();
+            return;
         }
-        else
-        {
-            Console.WriteLine("No se encontró el paciente");
-        }
+        Console.WriteLine("Patient not found.");
     }
+    // método para mostrar estado de reproducción de  perros y gatos
+    public void ToBreeding(string patient)
+    {
+        var dog = Dogs.FirstOrDefault(d => d.Name == patient);
+        if (dog != null)
+        {
+            dog.Breeding();
+            return;
+        }
+
+        var cat = Cats.FirstOrDefault(c => c.Name == patient);
+        if (cat != null)
+        {
+            cat.Breeding();
+            return;
+        }
+        Console.WriteLine("Patient not found.");
+    }
+
 }
