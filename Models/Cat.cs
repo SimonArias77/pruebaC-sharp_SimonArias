@@ -12,13 +12,17 @@ public class Cat
     public object? Name { get; internal set; }
     public bool BreedingStatus { get; internal set; } // estado reproductivo
     public string? FurLength { get; internal set; } // longitud pelaje
-                                                    // constructor de la clase gato
+
+    // constructor de la clase gato
     public Cat(object? id, object? name, bool breedingStatus, string? furLength)
     {
         Id = id;
         Name = name;
         BreedingStatus = breedingStatus;
         FurLength = furLength;
+    }
+    public Cat()
+    {
     }
     // método para castrar animal
     public void CastrateAnimal()
@@ -30,5 +34,4 @@ public class Cat
     {
         Console.WriteLine("Peluquería realizada");
     }
-
 }

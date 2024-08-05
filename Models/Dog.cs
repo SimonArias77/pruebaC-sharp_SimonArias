@@ -15,6 +15,7 @@ public class Dog
     public string? MicrochipNumber { get; internal set; }
     public string? BarkVolume { get; internal set; } // volumen de corteza?
     public string? CoatType { get; internal set; } // tipo de pelo
+
     // constructor de la clase perro
     public Dog(object? id, object? name, bool breedingStatus, string? temperament, string? microchipNumber, string? barkVolume, string? coatType)
     {
@@ -26,7 +27,9 @@ public class Dog
         BarkVolume = barkVolume;
         CoatType = coatType;
     }
-
+    public Dog()
+    {
+    }
     // método castrar animal
     public void CastrateAnimal()
     {
@@ -37,5 +40,4 @@ public class Dog
     {
         Console.WriteLine("Peluquería realizada");
     }
-
 }

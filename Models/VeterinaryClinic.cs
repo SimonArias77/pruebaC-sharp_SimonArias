@@ -21,7 +21,7 @@ public class VeterinaryClinic
         Cats = new List<Cat>();
     }
     // método para guardar un nuevo perro
-    public void SaveDog(Dog newDog) 
+    public void SaveDog(Dog newDog)
     {
         Dogs.Add(newDog);
         Console.WriteLine("Perro guardado");
@@ -116,5 +116,4 @@ public class VeterinaryClinic
             Console.WriteLine("Paciente no encontrado");
         }
     }
-
 }
